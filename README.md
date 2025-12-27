@@ -57,6 +57,7 @@ Você pode visualizar o projeto rodando em tempo real através do GitHub Pages:
 
 Estou disponível para projetos de desenvolvimento web e consultoria de SEO em Ibirité/MG e remoto.
 
+* **Instagram:** [@eutito.tech](https://instagram.com/eutito.tech)
 * **LinkedIn:** [Seu Perfil](https://linkedin.com/in/adriano-junior-b27066250)
 * **GitHub:** [@EuTitoTech](https://github.com/EuTitoTech)
 
