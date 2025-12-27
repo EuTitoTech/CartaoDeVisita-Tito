@@ -49,7 +49,7 @@ Para garantir leveza e controle total sobre o design, utilizei a "Tríade Web" p
 
 Você pode visualizar o projeto rodando em tempo real através do GitHub Pages:
 
-🔗 **[Acessar Junior | Digital Solutions](eutitotech.github.io/sitetito)**
+🔗 **[Acessar Junior | Digital Solutions](eutitotech.github.io/CartaoDeVisita-TitoCartaoDeVisita-Tito)**
 
 ---
 
