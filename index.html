@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="Especialista em Marketing Digital e Desenvolvimento Web.">
+    <meta name="description" content="Especialista em Marketing Digital e Desenvolvimento Web. Focado em Google Meu Negócio e Performance.">
     <meta name="theme-color" content="#050505">
-
     <title>Junior | Digital Solutions</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <style>
         :root {
@@ -24,72 +22,59 @@
             --border: rgba(255, 255, 255, 0.1);
         }
 
-        /* RESET TOTAL PARA EVITAR BUGS VISUAIS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
             color: #fff;
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+            overflow-x: hidden;
             display: flex;
             justify-content: center;
-            align-items: center; /* Centraliza verticalmente se a tela for grande */
+            align-items: center;
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased; 
-            padding: 20px 0; /* Espaço para não colar nas bordas em telas pequenas */
+            padding: 20px 0;
+            /* Melhoria de renderização de fonte */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- CANVAS FIX (CORREÇÃO DE BUG DE CLIQUE) --- */
         #particles {
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            z-index: -1; /* Fica atrás de tudo */
-            pointer-events: none; /* CRUCIAL: Deixa o clique passar para os botões */
-            background: radial-gradient(circle at center, #0a1128 0%, #000000 100%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at center, #0a1128 0%, #020202 100%);
         }
 
-        /* --- CONTAINER --- */
         .card-wrapper {
-            width: 90%; 
-            max-width: 400px;
-            perspective: 1000px; 
-            z-index: 10;
-            margin: auto; /* Centralização segura */
+            width: 90%; max-width: 420px; perspective: 1000px; z-index: 10; margin: auto;
         }
 
         .main-card {
             background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding: 45px 30px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            position: relative; 
-            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02);
+            position: relative; overflow: hidden;
+            /* Otimização crucial para movimento suave */
+            will-change: transform;
             transform-style: preserve-3d;
         }
 
-        /* Efeito Shine */
+        /* Efeito Shine Sutil */
         .main-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-25deg);
-            animation: shine 6s infinite linear;
-            pointer-events: none;
+            content:''; position:absolute; top:0; left:-100%; width:50%; height:100%;
+            background: linear-gradient(to right,transparent,rgba(255,255,255,0.03),transparent);
+            transform: skewX(-25deg); animation: shine 8s infinite linear; pointer-events:none;
         }
 
-        /* --- PERFIL --- */
         .profile-container { position: relative; width: 120px; margin: 0 auto 20px; }
-        
         .profile-img {
             width: 120px; height: 120px; border-radius: 50%;
             border: 2px solid var(--border); padding: 5px;
-            object-fit: cover; background: rgba(0,0,0,0.3);
-            display: block; /* Remove espaços fantasmas */
+            object-fit: cover; background: rgba(0,0,0,0.3); display: block;
         }
 
         .ring {
@@ -99,14 +84,11 @@
         }
         .ring:nth-child(2) { border-top-color: var(--secondary); animation: spin 5s linear infinite reverse; padding: 5px; top: -5px; left: -5px; width: calc(100% + 10px); height: calc(100% + 10px); }
 
-        /* --- TEXTOS --- */
-        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; line-height: 1.2; }
+        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -1px;}
         
-        /* CORREÇÃO DO PULO DE LAYOUT */
         .typing-container {
-            font-size: 0.9rem; color: var(--primary); font-weight: 500;
-            margin-bottom: 25px; 
-            height: 24px; /* Altura Fixa para não pular */
+            font-size: 0.9rem; color: var(--primary); font-weight: 700;
+            margin-bottom: 25px; height: 24px;
             display: flex; justify-content: center; align-items: center;
             letter-spacing: 1px; text-transform: uppercase;
         }
@@ -118,51 +100,97 @@
         }
         .dot { width: 8px; height: 8px; background: var(--sales); border-radius: 50%; box-shadow: 0 0 10px var(--sales); animation: blink 2s infinite; }
 
-        /* --- GRID SERVIÇOS --- */
-        .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
         .stack-item {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 15px; border-radius: 12px; text-align: left; transition: transform 0.2s;
-            cursor: default; /* Mostra que não é clicável */
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 15px; border-radius: 12px; text-align: left;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
         }
-        .stack-item:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
-        .stack-item i { color: var(--primary); font-size: 1.2rem; margin-bottom: 5px; }
-        .stack-item span { display: block; font-size: 0.8rem; font-weight: 700; color: #fff; }
-        .stack-item small { font-size: 0.65rem; color: #888; }
+        .stack-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-3px); }
+        .stack-item i { color: var(--primary); font-size: 1.3rem; margin-bottom: 8px; }
+        .stack-item span { display: block; font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .stack-item small { font-size: 0.7rem; color: #999; }
 
-        /* --- BOTÕES --- */
-        .btn-main {
-            position: relative; width: 100%;
-            background: linear-gradient(90deg, var(--sales), #00c46a);
-            color: #000; font-weight: 700; text-decoration: none;
-            padding: 20px; border-radius: 12px;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-            font-size: 1rem; box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s; 
-            overflow: hidden; margin-bottom: 15px;
-            cursor: pointer; /* Garante cursor de mãozinha */
-            z-index: 20; /* Garante que fique acima de tudo */
+        /* --- ESTILOS DO QUIZ (MAIOR) --- */
+        .quiz-section { margin-bottom: 25px; }
+        
+        .btn-quiz-start {
+            width: 100%;
+            background: linear-gradient(90deg, #00f2ff, #0066ff);
+            color: #fff; font-weight: 700; border: none;
+            padding: 18px; border-radius: 12px;
+            display: flex; justify-content: center; align-items: center; gap: 12px;
+            font-size: 1rem; margin-bottom: 10px; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.25);
+            font-family: 'Space Grotesk', sans-serif;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
         }
-        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 5px 40px rgba(0, 255, 136, 0.4); }
-        .btn-main:active { transform: scale(0.98); }
+        .btn-quiz-start:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0, 242, 255, 0.4); }
+        .btn-quiz-start i { font-size: 1.2rem; }
 
-        .social-row { display: flex; gap: 10px; justify-content: center; }
+        #quiz-area {
+            background: rgba(0,0,0,0.5); border-radius: 16px; padding: 25px;
+            border: 1px solid var(--primary); margin-bottom: 15px;
+            display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .quiz-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: block; color: #fff; letter-spacing: -0.5px; }
+        .btn-quiz-opt {
+            width: 100%; padding: 14px; margin-bottom: 10px; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border); border-radius: 10px; color: #eee; cursor: pointer;
+            text-align: left; display: flex; align-items: center; gap: 12px; transition: 0.2s;
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem;
+        }
+        .btn-quiz-opt:hover { background: rgba(0, 242, 255, 0.15); border-color: var(--primary); color: #fff; padding-left: 18px; }
+        .btn-quiz-opt i { color: var(--primary); font-size: 1.1rem; }
+
+        /* --- BOTÕES FIXOS COLORIDOS --- */
+        .direct-actions {
+            border-top: 1px solid var(--border);
+            padding-top: 25px;
+        }
+
+        .btn-whatsapp-direct {
+            width: 100%; background: transparent; color: var(--sales);
+            border: 2px solid var(--sales); padding: 16px; border-radius: 12px;
+            font-weight: 700; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px;
+            margin-bottom: 15px; transition: 0.3s; font-size: 1rem;
+        }
+        .btn-whatsapp-direct:hover { background: var(--sales); color: #000; box-shadow: 0 5px 25px rgba(0,255,136,0.4); transform: translateY(-3px); }
+        .btn-whatsapp-direct i { font-size: 1.3rem; }
+
+        .social-row { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+
         .btn-social {
-            flex: 1; padding: 12px; background: transparent;
-            border: 1px solid var(--border); border-radius: 10px;
-            color: #aaa; text-decoration: none; font-size: 0.8rem;
-            transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px;
-            cursor: pointer;
-            z-index: 20;
+            flex: 1; padding: 12px; border: none; border-radius: 12px;
+            color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative; overflow: hidden;
+            will-change: transform;
         }
-        .btn-social:hover { border-color: var(--primary); color: #fff; background: rgba(0, 242, 255, 0.05); }
 
-        footer { margin-top: 30px; font-size: 0.7rem; color: #555; }
+        /* Instagram Gradient */
+        .btn-insta {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+        }
+        
+        /* Github Gradient */
+        .btn-github {
+            background: linear-gradient(45deg, #161b22, #24292e, #3a7bd5);
+            box-shadow: 0 4px 15px rgba(22, 27, 34, 0.4);
+        }
 
+        .btn-social:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.2); }
+        .btn-social i { font-size: 1.1rem; }
+
+        footer { margin-top: 35px; font-size: 0.75rem; color: #666; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+        @keyframes shine { 0% { left: -100%; opacity: 0; } 50% { opacity: 1; } 100% { left: 200%; opacity: 0;} }
         @keyframes blink { 50% { opacity: 0.4; } }
-
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -175,11 +203,10 @@
             <div class="profile-container">
                 <div class="ring"></div>
                 <div class="ring"></div>
-                <img src="https://ui-avatars.com/api/?name=Junior&background=050505&color=00f2ff&size=200&bold=true" alt="Junior" class="profile-img">
+                <img src="./minha-foto.jpg" alt="Junior" class="profile-img">
             </div>
 
             <h1>Junior</h1>
-            
             <div class="typing-container">
                 <span id="typewriter"></span><span style="animation:blink 1s infinite">|</span>
             </div>
@@ -190,192 +217,152 @@
             </div>
 
             <div class="stack-grid">
-                <div class="stack-item">
-                    <i class="fas fa-search-location"></i>
-                    <span>SEO Local</span>
-                    <small>Google Meu Negócio</small>
-                </div>
-                <div class="stack-item">
-                    <i class="fas fa-code"></i>
-                    <span>Web Dev</span>
-                    <small>Sites Otimizados</small>
-                </div>
-                <div class="stack-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Tráfego</span>
-                    <small>Gestão de Anúncios</small>
-                </div>
-                <div class="stack-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Responsivo</span>
-                    <small>Mobile First</small>
+                <div class="stack-item"><i class="fas fa-map-marked-alt"></i><span>Google Meu Negócio</span><small>SEO Local & Maps</small></div>
+                <div class="stack-item"><i class="fas fa-rocket"></i><span>Websites Rápidos</span><small>Alta Conversão</small></div>
+            </div>
+
+            <div class="quiz-section">
+                <button id="btn-start-quiz" onclick="openQuiz()" class="btn-quiz-start">
+                    <i class="fas fa-wand-magic-sparkles"></i> INICIAR DIAGNÓSTICO IA
+                </button>
+
+                <div id="quiz-area">
+                    <div id="step-1">
+                        <span class="quiz-title">1. Qual o modelo principal do seu negócio?</span>
+                        <button onclick="nextStep('Físico')" class="btn-quiz-opt"><i class="fas fa-store"></i> Empresa Local / Física</button>
+                        <button onclick="nextStep('Digital')" class="btn-quiz-opt"><i class="fas fa-globe"></i> Negócio 100% Online</button>
+                        <button onclick="nextStep('Serviço')" class="btn-quiz-opt"><i class="fas fa-handshake"></i> Prestação de Serviços</button>
+                    </div>
+                    <div id="step-2" style="display:none;">
+                        <span class="quiz-title">2. Qual sua maior dificuldade hoje?</span>
+                        <button onclick="finishQuiz('GMN')" class="btn-quiz-opt"><i class="fas fa-search-minus"></i> Não sou encontrado no Google</button>
+                        <button onclick="finishQuiz('Vendas')" class="btn-quiz-opt"><i class="fas fa-chart-line-down"></i> Tenho tráfego, mas não vendo</button>
+                        <button onclick="finishQuiz('Visual')" class="btn-quiz-opt"><i class="fas fa-palette"></i> Minha presença digital é amadora</button>
+                    </div>
                 </div>
             </div>
 
-            <a href="https://wa.me/5531991795090?text=Ol%C3%A1%2C%20Tito!%20Vi%20seu%20perfil%20e%20gostaria%20de%20alavancar%20minha%20empresa." class="btn-main">
-                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
-                ALAVANCAR NEGÓCIO
-            </a>
+            <div class="direct-actions">
+                <a href="https://wa.me/5531991795090?text=Ol%C3%A1%20Junior%2C%20gostaria%20de%20alavancar%20meu%20neg%C3%B3cio." class="btn-whatsapp-direct">
+                    <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP
+                </a>
 
-            <div class="social-row">
-                <a href="https://www.linkedin.com/in/adriano-junior-b27066250/" class="btn-social">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
-                </a>
-                <a href="https://github.com/EuTitoTech" class="btn-social">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
+                <div class="social-row">
+                    <a href="https://instagram.com/SEU_USER_AQUI" class="btn-social btn-insta">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://github.com/EuTitoTech" class="btn-social btn-github">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
             </div>
 
-            <footer>
-                © 2025 Junior • Tecnologia & Growth
-            </footer>
+            <footer>© 2025 Junior • Soluções Digitais</footer>
         </div>
     </div>
 
     <script>
-        // 1. TYPING EFFECT (SEM PULO DE LINHA)
-        const textElement = document.getElementById("typewriter");
-        const phrases = ["CIÊNCIA DA COMPUTAÇÃO", "ESTRATÉGIA DIGITAL", "DESENVOLVIMENTO WEB"];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        // --- LÓGICA DO QUIZ (FUNIL) ---
+        let userAnswers = { tipo: '', desafio: '' };
 
+        function openQuiz() {
+            const btn = document.getElementById('btn-start-quiz');
+            const area = document.getElementById('quiz-area');
+            btn.style.transform = 'scale(0.9)'; btn.style.opacity = '0';
+            setTimeout(() => { 
+                btn.style.display = 'none'; 
+                area.style.display = 'block';
+                area.style.animation = 'fadeInUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards';
+            }, 300);
+        }
+
+        function nextStep(val) {
+            userAnswers.tipo = val;
+            const s1 = document.getElementById('step-1'); const s2 = document.getElementById('step-2');
+            s1.style.opacity = '0'; s1.style.transform = 'translateY(-20px)'; s1.style.transition = '0.3s';
+            setTimeout(() => {
+                s1.style.display = 'none'; s2.style.display = 'block';
+                s2.style.animation = 'fadeInUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards';
+            }, 300);
+        }
+
+        function finishQuiz(val) {
+            userAnswers.desafio = val;
+            let text = `Olá Junior! Finalizei o diagnóstico IA. Meu negócio é do tipo *${userAnswers.tipo}* e minha maior trava atual é: *`;
+            if(val === 'GMN') text += 'Não ser encontrado no Google (GMN).* Preciso de ajuda urgente.';
+            if(val === 'Vendas') text += 'Converter visitantes em clientes.* Preciso melhorar meu funil.';
+            if(val === 'Visual') text += 'Passar profissionalismo (Visual Amador).* Quero um redesign.';
+
+            window.open(`https://wa.me/5531991795090?text=${encodeURIComponent(text)}`, '_blank');
+            setTimeout(() => location.reload(), 3000);
+        }
+
+        // --- DIGITAÇÃO OTIMIZADA ---
+        const textEl = document.getElementById("typewriter");
+        const phrases = ["ESPECIALISTA G.M.N.", "ESTRATÉGIA DIGITAL", "DESENVOLVIMENTO WEB"];
+        let pIdx = 0, cIdx = 0, isDel = false;
         function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 30 : 80; // Mais rápido para ser dinâmico
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2000; 
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(type, typeSpeed);
+            const current = phrases[pIdx];
+            textEl.textContent = current.substring(0, isDel ? cIdx-- : cIdx++);
+            let speed = isDel ? 40 : 90;
+            if (!isDel && cIdx === current.length + 1) { speed = 2500; isDel = true; }
+            else if (isDel && cIdx === 0) { isDel = false; pIdx = (pIdx + 1) % phrases.length; speed = 500; }
+            setTimeout(type, speed);
         }
         document.addEventListener('DOMContentLoaded', type);
 
-        // 2. CANVAS PARTICLE SYSTEM (BUG FIX: RESIZE & CLICKS)
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        // --- PARTÍCULAS LEVES ---
+        const cvs = document.getElementById('particles'), ctx = cvs.getContext('2d');
+        let parts = [];
+        function resize() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+        window.addEventListener('resize', () => { resize(); initParts(); });
+        resize();
+        class P {
+            constructor() { this.reset(); }
+            reset() { this.x = Math.random()*cvs.width; this.y = Math.random()*cvs.height; this.vx = Math.random()*0.4-0.2; this.vy = Math.random()*0.4-0.2; this.r = Math.random()*1.5+0.5; }
+            up() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height) this.reset(); }
+            draw() { ctx.fillStyle='rgba(0,242,255,0.5)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fill(); }
         }
-        
-        // Debounce para evitar recalculo excessivo no resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                resizeCanvas();
-                init();
-            }, 100);
-        });
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Rebater nas bordas
-                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-            }
-            draw() {
-                ctx.fillStyle = '#00f2ff';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particlesArray = [];
-            // Ajuste de densidade: Menos partículas no mobile para não travar
-            let density = window.innerWidth < 768 ? 18000 : 9000;
-            let numberOfParticles = (canvas.width * canvas.height) / density;
-            
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
+        function initParts() { parts = []; for(let i=0; i<(window.innerWidth<768?25:50); i++) parts.push(new P()); }
+        initParts();
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                
-                // Linhas de conexão
-                for (let j = i; j < particlesArray.length; j++) {
-                    const dx = particlesArray[i].x - particlesArray[j].x;
-                    const dy = particlesArray[i].y - particlesArray[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 242, 255, ${0.4 - distance/250})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,cvs.width,cvs.height);
+            parts.forEach((p,i) => { p.up(); p.draw();
+                parts.slice(i+1).forEach(p2 => { const d=Math.hypot(p.x-p2.x,p.y-p2.y); if(d<90){
+                    ctx.beginPath(); ctx.strokeStyle=`rgba(0,242,255,${0.2-d/450})`; ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+                }});
+            }); requestAnimationFrame(animate);
         }
-
-        init();
         animate();
 
-        // 3. 3D TILT (SOMENTE DESKTOP E SUAVIZADO)
+        // --- 3D TILT SUAVE (LERP) ---
         if (window.matchMedia("(pointer: fine)").matches) {
-            const card = document.getElementById('cardElement');
-            const wrapper = document.querySelector('.card-wrapper');
+            const c = document.getElementById('cardElement'), w = document.querySelector('.card-wrapper');
+            // Variáveis para a posição atual e a posição alvo (onde o mouse está)
+            let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
 
-            wrapper.addEventListener('mousemove', (e) => {
-                const rect = wrapper.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Reduzido o fator de divisão (30) para ser mais sutil e menos "bambo"
-                const rotateX = ((y - centerY) / 30) * -1; 
-                const rotateY = (x - centerX) / 30;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            w.addEventListener('mousemove', e => {
+                const r = w.getBoundingClientRect();
+                // Calcula o alvo baseado na posição do mouse (Aproximação = sinais invertidos)
+                // Aumentei o divisor para 35 para ficar mais sutil ainda
+                targetX = (e.clientY - r.top - r.height / 2) / 35; 
+                targetY = -(e.clientX - r.left - r.width / 2) / 35;
             });
 
-            wrapper.addEventListener('mouseleave', () => {
-                // Transição suave ao sair
-                card.style.transition = 'transform 0.5s ease';
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-                setTimeout(() => { card.style.transition = ''; }, 500);
-            });
+            w.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+
+            // Função de animação que roda a cada frame
+            function animateTilt() {
+                // Interpolação Linear (Lerp) para suavidade: move 10% da distância em direção ao alvo a cada frame
+                currentX += (targetX - currentX) * 0.1;
+                currentY += (targetY - currentY) * 0.1;
+
+                // Aplica a rotação suave
+                c.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg)`;
+                
+                requestAnimationFrame(animateTilt); // Chama o próximo frame
+            }
+            animateTilt(); // Inicia o loop de animação
         }
     </script>
 </body>
