@@ -14,9 +14,9 @@
     
     <style>
         :root {
-            --primary: #00f2ff;    
-            --secondary: #0066ff;  
-            --sales: #00ff88;      
+            --primary: #00f2ff;     
+            --secondary: #0066ff;   
+            --sales: #00ff88;       
             --bg: #050505;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
@@ -34,9 +34,11 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px 0;
-            /* Melhoria de renderização de fonte */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            /* Desabilita seleção de texto pelo CSS */
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         #particles {
@@ -58,12 +60,10 @@
             text-align: center;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02);
             position: relative; overflow: hidden;
-            /* Otimização crucial para movimento suave */
             will-change: transform;
             transform-style: preserve-3d;
         }
 
-        /* Efeito Shine Sutil */
         .main-card::before {
             content:''; position:absolute; top:0; left:-100%; width:50%; height:100%;
             background: linear-gradient(to right,transparent,rgba(255,255,255,0.03),transparent);
@@ -75,6 +75,7 @@
             width: 120px; height: 120px; border-radius: 50%;
             border: 2px solid var(--border); padding: 5px;
             object-fit: cover; background: rgba(0,0,0,0.3); display: block;
+            pointer-events: none; /* Impede arrastar a imagem */
         }
 
         .ring {
@@ -111,7 +112,6 @@
         .stack-item span { display: block; font-size: 0.85rem; font-weight: 700; color: #fff; }
         .stack-item small { font-size: 0.7rem; color: #999; }
 
-        /* --- ESTILOS DO QUIZ (MAIOR) --- */
         .quiz-section { margin-bottom: 25px; }
         
         .btn-quiz-start {
@@ -144,7 +144,6 @@
         .btn-quiz-opt:hover { background: rgba(0, 242, 255, 0.15); border-color: var(--primary); color: #fff; padding-left: 18px; }
         .btn-quiz-opt i { color: var(--primary); font-size: 1.1rem; }
 
-        /* --- BOTÕES FIXOS COLORIDOS --- */
         .direct-actions {
             border-top: 1px solid var(--border);
             padding-top: 25px;
@@ -171,13 +170,11 @@
             will-change: transform;
         }
 
-        /* Instagram Gradient */
         .btn-insta {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
         }
         
-        /* Github Gradient */
         .btn-github {
             background: linear-gradient(45deg, #161b22, #24292e, #3a7bd5);
             box-shadow: 0 4px 15px rgba(22, 27, 34, 0.4);
@@ -338,31 +335,36 @@
         // --- 3D TILT SUAVE (LERP) ---
         if (window.matchMedia("(pointer: fine)").matches) {
             const c = document.getElementById('cardElement'), w = document.querySelector('.card-wrapper');
-            // Variáveis para a posição atual e a posição alvo (onde o mouse está)
             let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
 
             w.addEventListener('mousemove', e => {
                 const r = w.getBoundingClientRect();
-                // Calcula o alvo baseado na posição do mouse (Aproximação = sinais invertidos)
-                // Aumentei o divisor para 35 para ficar mais sutil ainda
                 targetX = (e.clientY - r.top - r.height / 2) / 35; 
                 targetY = -(e.clientX - r.left - r.width / 2) / 35;
             });
 
             w.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
 
-            // Função de animação que roda a cada frame
             function animateTilt() {
-                // Interpolação Linear (Lerp) para suavidade: move 10% da distância em direção ao alvo a cada frame
                 currentX += (targetX - currentX) * 0.1;
                 currentY += (targetY - currentY) * 0.1;
-
-                // Aplica a rotação suave
                 c.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg)`;
-                
-                requestAnimationFrame(animateTilt); // Chama o próximo frame
+                requestAnimationFrame(animateTilt);
             }
-            animateTilt(); // Inicia o loop de animação
+            animateTilt();
+        }
+
+        // --- SCRIPT DE SEGURANÇA (ANTI-COPY) ---
+        // Desativa o menu de contexto (botão direito)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Desativa atalhos de teclado para inspeção (F12, Ctrl+U, etc)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
         }
     </script>
 </body>
